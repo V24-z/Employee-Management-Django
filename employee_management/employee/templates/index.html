@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <title>Employee Management System</title>
+
+    <style>
+        /* Modern Gradient Background */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Main Dashboard Container */
+        .dashboard-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .header-title {
+            color: #2c3e50;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .header-subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 0.9rem;
+        }
+
+        /* Action Cards Styling */
+        .action-card {
+            display: block; /* Makes the anchor tag fill the space */
+            text-decoration: none;
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hover Effects */
+        .action-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: transparent;
+        }
+
+        /* Icon Circles */
+        .icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .action-card:hover .icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Specific Colors for each action */
+        .bg-view { background: linear-gradient(135deg, #11998e, #38ef7d); box-shadow: 0 4px 15px rgba(56, 239, 125, 0.3); }
+        .bg-add { background: linear-gradient(135deg, #3a7bd5, #3a6073); box-shadow: 0 4px 15px rgba(58, 123, 213, 0.3); }
+        .bg-remove { background: linear-gradient(135deg, #ff416c, #ff4b2b); box-shadow: 0 4px 15px rgba(255, 75, 43, 0.3); }
+        .bg-filter { background: linear-gradient(135deg, #8E2DE2, #4A00E0); box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3); }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #95a5a6;
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer-text {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #bdc3c7;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 20px;
+            }
+        }
+    </style>
+  </head>
+  <body> 
+
+    <div class="dashboard-container">
+        <h1 class="header-title">Employee Management System</h1>
+        <p class="header-subtitle">Welcome Admin! Select an action to proceed.</p>
+        <hr class="mb-5" style="opacity: 0.1"/>
+
+        <div class="row g-4">
+            
+            <!-- View Employees Card -->
+            <div class="col-md-6 col-lg-6">
+                <a href="{% url 'view_emp' %}" class="action-card">
+                    <div class="icon-wrapper bg-view">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="card-title">View All Employees</h3>
+                    <p class="card-desc">Access the complete directory of current staff.</p>
+                </a>
+            </div>
+
+            <!-- Add Employee Card -->
+            <div class="col-md-6 col-lg-6">
+                <a href="{% url 'add_emp' %}" class="action-card">
+                    <div class="icon-wrapper bg-add">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="card-title">Add New Employee</h3>
+                    <p class="card-desc">Onboard new talent and create profiles.</p>
+                </a>
+            </div>
+
+            <!-- Remove Employee Card -->
+            <div class="col-md-6 col-lg-6">
+                <a href="{% url 'remove_emp' %}" class="action-card">
+                    <div class="icon-wrapper bg-remove">
+                        <i class="fas fa-user-minus"></i>
+                    </div>
+                    <h3 class="card-title">Remove Employee</h3>
+                    <p class="card-desc">Archive or delete former employee records.</p>
+                </a>
+            </div>
+
+            <!-- Filter Employee Card -->
+            <div class="col-md-6 col-lg-6">
+                <a href="{% url 'filter_emp' %}" class="action-card">
+                    <div class="icon-wrapper bg-filter">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3 class="card-title">Filter Records</h3>
+                    <p class="card-desc">Search by department, role, or name.</p>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="footer-text">
+            &copy; 2024 EMS Dashboard. All Rights Reserved.
+        </div>
+    </div>
+   
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <!-- Simple script to handle demo clicks since we are in a preview environment -->
+    <script>
+        // Note: This script is just for the preview to show interaction.
+        // In your real Flask/Django app, the hrefs in the <a> tags will handle navigation.
+        const links = document.querySelectorAll('.action-card');
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // If this file is running in a static environment, prevent default so it doesn't 404
+                if (window.location.protocol === 'file:' || window.location.href.includes('preview')) {
+                    // console.log("Navigating to: " + this.getAttribute('href'));
+                    // e.preventDefault(); 
+                    // Remove the comments above if you want to stop navigation in preview
+                }
+            });
+        });
+    </script>
+  </body>
+</html>
