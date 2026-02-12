@@ -1,0 +1,65 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}EMS Dashboard{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Your Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar glass-panel" id="sidebar">
+    <div class="sidebar-brand">
+        <i class="fa-solid fa-bolt"></i>
+        <span>EMS Portal</span>
+    </div>
+
+    <ul class="sidebar-nav">
+        <li><a href="{% url 'index' %}"><i class="fa-solid fa-border-all"></i> Dashboard</a></li>
+        <li><a href="{% url 'view_emp' %}"><i class="fa-solid fa-users"></i> View Employees</a></li>
+        <li><a href="{% url 'add_emp' %}"><i class="fa-solid fa-user-plus"></i> Add Employee</a></li>
+        <li><a href="{% url 'remove_emp' %}"><i class="fa-solid fa-user-minus"></i> Remove Employee</a></li>
+        <li><a href="{% url 'filter_emp' %}"><i class="fa-solid fa-filter"></i> Filter Records</a></li>
+    </ul>
+</aside>
+
+<div class="main-wrapper">
+
+    <!-- Topbar -->
+    <header class="topbar glass-panel">
+        <h5 class="m-0">Employee Management System</h5>
+    </header>
+
+    <!-- Dynamic Content -->
+    <main class="content-area">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2024 Employee Management System
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>
