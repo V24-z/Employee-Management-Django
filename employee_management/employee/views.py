@@ -57,7 +57,7 @@ def add_emp(request):
         messages.success(request, "Data inserted successfully")   
         return redirect( 'view_emp') # optional
     else:
-        emps = EmployeeForm()   # ✅ create empty form
+        emps = EmployeeForm()   #  create empty form
 
     context = {'emps': emps}
     return render(request, 'add_emp.html', context)
@@ -115,7 +115,8 @@ def update_emp(request, id):
 
 def filter_emp(request):
      if request.method =='GET':
-         name = request.GET.get('name')          # ✅ safe
+         
+         name = request.GET.get('name')          
          dept = request.GET.get('dept')
          role = request.GET.get('role')
 
@@ -129,8 +130,8 @@ def filter_emp(request):
          context={
             'emps':emps
               }
-         return render(request,'view_emp.html',context)
-     elif request.method=='GET':
+         return render(request,'filter_emp.html',context)
+     elif request.method=='POST':
                 return render(request,'filter_emp.html')
      else:
           return HttpResponse("ERROR OCCURE!!!")

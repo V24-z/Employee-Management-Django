@@ -15,23 +15,23 @@
     <div class="container">
         <h1>Filter Employee Details</h1>
     <hr/>
-      <form action="\filter_emp" method="get">
+      <form action="{% url 'view_emp' %}" method="get">
         {% csrf_token %}
   <div class="mb-3">
-    <labelclass="form-label">First /Last Name</label>
-    <input type="text" class="form-control" name="name" value="{{name}}">
+    <label class="form-label">First /Last Name</label>
+    <input type="text" class="form-control" name="name" value="{{ request.GET.name }}">
    
   
   </div>
   <div class="mb-3">
     <label  class="form-label">Department</label>
-    <input type="text" class="form-control"name="dept" id="dept" value="{{ dept}}">
+    <input type="text" class="form-control"name="dept" id="dept" value="{{ request.GET.dept }}">
   </div>
   
   
   <div class="mb-3">
     <label  class="form-label">Role</label>
-    <input type="text" class="form-control" name="role"value="{{ role}}">
+    <input type="text" class="form-control" name="role"value="{{ request.GET.role }}">
   </div>
    
 
